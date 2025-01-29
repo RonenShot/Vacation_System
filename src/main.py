@@ -29,6 +29,8 @@ class Admin(GeneralUser):
         self.vacationFacade.update_vacation()
     def delete_vacation(self):
         self.vacationFacade.delete_vacation() 
+    def view_all_vacations(self):
+        self.vacationFacade.view_all_vacations()
 
 class User(GeneralUser):
     def __init__(self , data):
@@ -98,7 +100,7 @@ while continue_program:
                     raise ValueError
                 break
             except Exception as e:
-                print("Your choise must be nomeric 1 or 2") 
+                print("Your choise must be nomeric 1-5") 
         if choise ==1 :
             user.view_all_vacations()
         if choise == 2:
@@ -116,7 +118,8 @@ while continue_program:
         print("1.Add vacation.")
         print("2.Edit vacation.")
         print("3.Delete vacation.")
-        print("4.Exit")
+        print("4.View all vacations.")
+        print("5.Exit")
         print() 
         while True:
             try:
@@ -125,7 +128,7 @@ while continue_program:
                     raise ValueError
                 break
             except Exception as e:
-                print("Your choise must be nomeric 1 or 2") 
+                print("Your choise must be nomeric 1-5") 
         
         if choise == 1:
             admin.add_vacation()
@@ -134,6 +137,8 @@ while continue_program:
         if choise == 3:
             admin.delete_vacation()
         if choise == 4:
+            admin.view_all_vacations()
+        if choise == 5:
             type_user = 0
             loged = False
             

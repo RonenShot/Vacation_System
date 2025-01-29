@@ -97,9 +97,11 @@ class vacationFacade:
         else:
             
             result = self.vacationLogic.find_country(country)
-            if len(result)!=0:
+            if len(result)>0:
                 dic = result[0]
-                return dic["country_id"]
+                return dic["country_id"] 
+            else:
+                print("Not exist country in the database.")
             
             
     def add_vacation(self):
@@ -123,10 +125,12 @@ class vacationFacade:
                 id = int(input("Please enter id of vacation for delete: "))
                 res = self.vacationLogic.find_vacation(id)
                 if len(res) == 0:
-                    raise ValueError
-                break
+                    print("Id nummber must represent exist vacation.")
+                else:
+                    valid_vacation = True
+                    break
             except Exception as e:
-                print("Id nummber must be numeric and represnt exist vacation.")
+                print("Id nummber must be numeric.")
         res =  self.vacationLogic.delete_vacation(id)
         
         if res:
@@ -141,11 +145,12 @@ class vacationFacade:
                 id = int(input("Please enter id of vacation for edit: "))
                 res = self.vacationLogic.find_vacation(id)
                 if len(res) == 0:
-                    raise ValueError
-                valid_vacation = True
-                break
+                    print("Id nummber must represent exist vacation.")
+                else:
+                    valid_vacation = True
+                    break
             except Exception as e:
-                print("Id nummber must be numeric and represnt exist vacation.")
+                print("Id nummber must be numeric.")
         if valid_vacation:
             valid_fields = ['vacation_title' , 'start_date' , 'end_date' , 'price' , 'country_id' , 'image_url' , 'description']
             params = {}
@@ -198,11 +203,12 @@ class vacationFacade:
                 id = int(input("Please enter id of the vacation you want to like: "))
                 res = self.vacationLogic.find_vacation(id)
                 if len(res) == 0:
-                    raise ValueError
-                valid_vacation = True
-                break
+                    print("Id nummber must represent exist country.")
+                else:
+                    valid_vacation = True
+                    break
             except Exception as e:
-                print("Id nummber must be numeric and represnt exist vacation.") 
+                print("Id nummber must be numeric ") 
         if valid_vacation:
             return self.likesLogic.like_vacation(id_user , id)
     
@@ -213,9 +219,10 @@ class vacationFacade:
                 id = int(input("Please enter id of the vacation you want to unlike: "))
                 res = self.vacationLogic.find_vacation(id)
                 if len(res) == 0:
-                    raise ValueError
-                valid_vacation = True
-                break
+                    print("Id nummber must represent exist country.")
+                else:
+                    valid_vacation = True
+                    break
             except Exception as e:
                 print("Id nummber must be numeric and represnt exist vacation.") 
         if valid_vacation:
@@ -240,11 +247,59 @@ class vacationFacade:
              
 if __name__ == "__main__":
     vf = vacationFacade()
-    
-    #vf.add_vacation()
-    #vf.view_all_vacations()
-    #vf.delete_vacation()
-    #vf.update_vacation()
-    #vf.give_unlike_to_vacation(12)
-    vf.view_liked_vacations(12)
+    while True:
+        print("1.vacation title")
+        print("2.vacation image url")
+        print("3.vacation description")
+        print("4.start date")
+        print("5.end date")
+        print("6.price")
+        print("7.country check")
+        print("8.add vacation")
+        print("9.update vacation")
+        print("10.delete vacatio")
+        print("11.view all vacations")
+        print("12.give like")
+        print("13.give unlike")
+        print("14.view liked vacations")
+        print("15.exit")
+        while True:
+            try: 
+                op = int(input("Please enter number of function to execute: "))
+                if op<1 or op>15:
+                    print("not exist function")
+                else:
+                    break
+            except Exception as e:
+                print("not valid input") 
+        if op ==1:
+            print(vf.vacation_title())
+        if op ==2:
+            print(vf.vacation_image_url())
+        if op ==3:
+            print(vf.vacation_description())
+        if op ==4:
+            print(vf.start_date_check())
+        if op ==5:
+            print(vf.end_date_check(vf.start_date_check()))
+        if op ==6:
+            print(vf.price_check())
+        if op ==7:
+            print(vf.country_check())
+        if op ==8:
+            print(vf.add_vacation())
+        if op ==9:
+            print(vf.update_vacation())
+        if op ==10:
+            print(vf.delete_vacation())
+        if op ==11:
+            print(vf.view_all_vacations())
+        if op ==12:
+            print(vf.give_like_to_vacation(104))
+        if op==13:
+            print(vf.give_unlike_to_vacation(104))
+        if op ==14:
+            print(vf.view_liked_vacations(104))
+        if op ==15:
+            break
     

@@ -70,6 +70,24 @@ class UserLogic:
         
 if __name__=="__main__":
     ul = UserLogic()
-    #ul.user_register("bob" ,"taylor" ,"bob.taylor@example.com" , "hashed_password_4" , "1980-07-24" , "1")
-    #ul.user_register("ronen" , "shotlender" , "ronenshot2006@gmail.com" , "R123456" , "2006-05-08")
-    ul.login_user("ronenshot2006@gmail.com" , "R123456")
+    while True:
+        print("1.Register user")
+        print("2.login user")
+        print("3.find user")
+        while True:
+            try:
+                op = int(input("Please enter number of function: "))
+                if op <1 or op>3:
+                    print("Not exist function")
+                else:
+                    break 
+            except Exception as e:
+                print("Not valid input")
+            if op ==1:
+                print(ul.user_register(first_name="example user" , last_name="example last name user" , email="userexample@gmail.com" , password="user123456" , date_of_birth="2020-12-12"))
+            if op==2:
+                print(ul.login_user("ronenuser@gmail.com" , "R123456"))
+            if op==3:
+                ul.find_user("ronenuser@gmail.com")
+                
+            

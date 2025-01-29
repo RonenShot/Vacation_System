@@ -25,22 +25,26 @@ class DAL:
         if self.connection:
             try:
                 with self.connection.cursor(dictionary = True) as cursor:
-                    print(f"executing query: {query}")
+                    #print(f"executing query: {query}")
+                     
                     if params:
-                        print(f"with parameters: {params}")
+                        pass
+                        #print(f"with parameters: {params}")
                     cursor.execute(query,params)
                     if fetchall:
                         result = cursor.fetchall()
-                        print(f"fetched {len(result)} rows")
+                        #print(f"fetched {len(result)} rows")
                         return result
                     if fetchone:
                         result = cursor.fetchone() 
-                        print("fetched one row")
+                        #print("fetched one row")
                         return result
                     else:
-                        print(f"Query affected {cursor.rowcount} rows")     
+                        pass
+                        #print(f"Query affected {cursor.rowcount} rows")     
             except mysql.connector.Error as err:
-                print(f"Error executing query: {err}")
+                #print(f"Error executing query: {err}")
+                pass
     def get_table(self,query,params=None):
         return self.execute_query(query , params , fetchall=True)
     def get_scalar(self , query , params=None):
@@ -59,10 +63,10 @@ class DAL:
     def __exit__(self,exc_type,exc_val,exc_tb):
         if self.connection:
             self.close()
-            print("connection closed!")
+            #print("connection closed!")
 if __name__=="__main__":
     with DAL() as dal:
-        print("\n===get tableexamples===")
+        #print("\n===get tableexamples===")
         countries = dal.get_table("SELECT * FROM countries")
         users = dal.get_table("SELECT * FROM users")
         for country in countries:

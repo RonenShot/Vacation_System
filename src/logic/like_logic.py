@@ -64,7 +64,28 @@ class LikesLogic:
 
 
 if __name__ == "__main__":
-    l = LikesLogic()
-    liked_vacations  = l.view_user_liked_vacations(12) 
-    for like in liked_vacations:
-        print(f"name: {like["vacation_title"]}")
+    likes_logic = LikesLogic()
+    while True:
+        print("1.like vacation")
+        print("2.unlike vacation")
+        print("3.view user liked vacation")
+        print("4.exit")
+        while True:
+            try:
+                op = int(input("What function you want to check: "))
+                if op<1 or op>4:
+                    print("wrong function number")
+                else:
+                  break
+            except Exception as e:
+                print("Not valid Input")
+        if op ==1:
+            print(likes_logic.like_vacation(104 , 10))
+        if op==2:
+            print(likes_logic.unlike_vacation(104 , 10))
+        if op ==3:
+            print(likes_logic.view_user_liked_vacations(104))
+        if op == 4:
+            break
+            
+                    

@@ -92,9 +92,44 @@ class VacationLogic:
 
 if __name__ == "__main__":
     v = VacationLogic()
-    
-    # av = v.view_all_vacations()
-    # for vacation in av:
-    #     print(f"title: {vacation["vacation_title"]} , country_id: {vacation["country_id"] }, name:{vacation["country_name"]}")
-    
-    # country_vacations = v.view_all_vacations_in_country("USA")
+    while True:
+        
+        while True:
+            print("1.view all vacations")
+            print("2.add vacation")
+            print("3.edit vacation")
+            print("4.delete vacation")
+            print("5.find country")
+            print("6.find country name")
+            print("7.find vacation")
+            print("8.find exist vacation")
+            print("9.exit")
+            try:
+              op = int(input("please enter number of function: "))
+              if op <1 or op >9:
+                  print("not an exist function")
+              else:
+                  break
+            except Exception as e:
+                print("Not valid input")
+        
+        if op == 1:
+            print(v.view_all_vacations())
+        if op == 2:
+            print(v.add_vacation("example vacation" , "2025-12-12" , "2025-12-13" , "5000" , 12 , "image example" , "description example"))
+        if op==3:
+            print(v.edit_vacation(vacation_title="example vacation1" , start_date="2025-12-13" , end_date="2025-12-14" , price="5001" , country_id=12 , image_url="image example1" , description="description example1"))
+        if op==4:
+            print(v.delete_vacation())
+        if op ==5:
+            print(v.find_country("USA"))
+        if op == 6:
+            print(v.find_country_name(12))
+        if op ==7:
+            print(v.find_vacation(1))
+        if op ==8:
+            print(v.find_exists_vacation(vacation_title="Ski Adventure" , start_date="2025-12-15" , end_date="2025-12-22" , price="2000" , country_id=2 , image_url="https://example.com/ski.jpg" , description="Enjoy skiing in the snowy mountains of Canada."))
+        if op ==9:
+            break
+            
+   

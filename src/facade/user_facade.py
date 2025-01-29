@@ -132,14 +132,41 @@ class UserFacade:
                     
 if __name__ == "__main__":
     uf = UserFacade()
-    
-    # First get the start date
-    # start_date = uf.start_date_check()
-
-    # # Then pass the start date to check the end date
-    # uf.end_date_check(start_date)
-    #uf.register_user()
-    uf.login_user()
+    while True:
+        while True:
+            print("1.get first name")
+            print("2.get last name")
+            print("3.get email")
+            print("4.get password")
+            print("5.get date of birth")
+            print("6.register")
+            print("7.login")
+            print("8.exit")
+            try:
+                op = int(input("Please enter number of function to execute: "))
+                if op <1 or op>8:
+                    print("not exitst function")
+                else:
+                    break
+            except Exception as e:
+                print("Not valid input")
+        if op ==1:
+            print(uf.getFirstName())
+        if op==2:
+            print(uf.getLastName())
+        if op==3:
+            print(uf.email_check())
+        if op==4:
+            print(uf.password_check())
+        if op==5:
+            print(uf.date_of_birth_check())
+        if op ==6:
+            print(uf.register_user())
+        if op ==7:
+            print(uf.login_user())
+        if op ==8:
+            break
+            
     
     
     
